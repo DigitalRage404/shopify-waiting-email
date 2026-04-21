@@ -227,7 +227,7 @@ async function main() {
   for (const order of orders) {
     if (order.tags?.includes(TAG)) continue;
     const days = countBusinessDays(new Date(order.created_at), today);
-    if (days === 7) {
+    if (days >= 7) {
       await sendEmail(order);
       await addTagToOrder(order.id, order.tags);
       sent++;
